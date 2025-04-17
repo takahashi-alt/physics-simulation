@@ -58,14 +58,12 @@ const numParticles = 100;
       densityCtx.lineWidth = 2;
       densityCtx.stroke();
     }
-
+    const speedSlider = document.getElementById("speedSlider");
+    const speedValue = document.getElementById("speedValue");
+    
+    // スライダーのイベントで速度変更
+    speedSlider.addEventListener("input", () => {
+      waveSpeed = parseFloat(speedSlider.value);
+      speedValue.textContent = waveSpeed.toFixed(1);
+    });
 animate();
-
-const speedSlider = document.getElementById("speedSlider");
-const speedValue = document.getElementById("speedValue");
-
-// スライダーのイベントで速度変更
-speedSlider.addEventListener("input", () => {
-  waveSpeed = parseFloat(speedSlider.value);
-  speedValue.textContent = waveSpeed.toFixed(1);
-});

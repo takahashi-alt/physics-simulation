@@ -11,8 +11,17 @@ const numParticles = 100;
     const longCtx = longCanvas.getContext("2d");
 
     const densityCanvas = document.getElementById("densityCanvas");
+    
     const densityCtx = densityCanvas.getContext("2d");
+    const speedSlider = document.getElementById("speedSlider");
+    const speedValue = document.getElementById("speedValue");
 
+    // スライダーのイベントで速度変更
+    speedSlider.addEventListener("input", () => {
+      waveSpeed = parseFloat(speedSlider.value);
+      speedValue.textContent = waveSpeed.toFixed(1);
+    });
+    
     for (let i = 0; i < numParticles; i++) {
       positions[i] = i * spacing;
     }
@@ -58,12 +67,5 @@ const numParticles = 100;
       densityCtx.lineWidth = 2;
       densityCtx.stroke();
     }
-    const speedSlider = document.getElementById("speedSlider");
-    const speedValue = document.getElementById("speedValue");
-    
-    // スライダーのイベントで速度変更
-    speedSlider.addEventListener("input", () => {
-      waveSpeed = parseFloat(speedSlider.value);
-      speedValue.textContent = waveSpeed.toFixed(1);
-    });
+
 animate();

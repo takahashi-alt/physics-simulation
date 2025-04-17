@@ -2,21 +2,25 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>疎密波</title>
+  <title>疎密波シミュレーション</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    canvas { border: 1px solid #ccc; display: block; margin-top: 10px; }
+    canvas { display: block; margin-bottom: 10px; border: 1px solid #aaa; }
   </style>
 </head>
 <body>
-  <h1>疎密波シミュレーター</h1>
+  <h1>疎密波（縦波）</h1>
 
-  <label>質量 (kg): <input type="number" id="massInput" value="1" step="0.1"></label><br>
-  <label>初速度 (m/s): <input type="number" id="velocityInput" value="10" step="1"></label><br>
-  <button onclick="startSimulation()">シミュレーション開始</button>
+  <!-- 疎密波：粒子の動き -->
+  <canvas id="longitudinalCanvas" width="800" height="150"></canvas>
 
-  <canvas id="simCanvas" width="600" height="300"></canvas>
-
+  <!-- 密度グラフ -->
+  <canvas id="densityCanvas" width="800" height="150"></canvas>
+  <label for="speedSlider">波の速さ:</label>
+  <input type="range" id="speedSlider" min="1" max="3"step="0.1" value="2
+  ">
+  <span id="speedValue">3</span>
+  <br>
+  <br>
   <script src="com_wave.js"></script>
 <a href="index.html">ホームに戻る</a>
 </body>

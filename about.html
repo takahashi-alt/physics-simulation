@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Aboutページ</title>
+  <meta charset="UTF-8" />
+  <title>正弦波</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    canvas { border: 1px solid #ccc; display: block; margin-top: 10px; }
+  </style>
 </head>
 <body>
-  <h1>これはAboutページです！</h1>
-  <p>ここに自己紹介などを書けます。</p>
-  <a href="index.html">ホームに戻る</a>
+  <h1>正弦波シミュレーター</h1>
+
+  <label>質量 (kg): <input type="number" id="massInput" value="1" step="0.1"></label><br>
+  <label>初速度 (m/s): <input type="number" id="velocityInput" value="10" step="1"></label><br>
+  <button onclick="startSimulation()">シミュレーション開始</button>
+
+  <canvas id="simCanvas" width="600" height="300"></canvas>
+
+  <script src="sin.js"></script>
+<a href="index.html">ホームに戻る</a>
 </body>
 </html>

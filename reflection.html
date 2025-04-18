@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>自由端・固定端</title>
+  <meta charset="UTF-8">
+  <title>波の反射シミュレーター</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    canvas { border: 1px solid #ccc; display: block; margin-top: 10px; }
+    body { text-align: center; font-family: sans-serif; }
+    canvas { border: 1px solid #000; margin: 20px 0; }
+    label { margin: 0 10px; }
+    .controls { margin-top: 20px; }
+    .controls button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
-  <h1>自由端・固定端反射シミュレーター</h1>
+  <h1>波の反射シミュレーター</h1>
+  <div>
+    左端：
+    <label><input type="radio" name="left" value="fixed" checked>固定端</label>
+    <label><input type="radio" name="left" value="free">自由端</label>
+    ｜ 右端：
+    <label><input type="radio" name="right" value="fixed" checked>固定端</label>
+    <label><input type="radio" name="right" value="free">自由端</label>
+  </div>
 
-  <label>質量 (kg): <input type="number" id="massInput" value="1" step="0.1"></label><br>
-  <label>初速度 (m/s): <input type="number" id="velocityInput" value="10" step="1"></label><br>
-  <button onclick="startSimulation()">シミュレーション開始</button>
+  <div class="controls">
+    <button id="startButton">スタート</button>
+    <button id="resetButton">リセット</button>
+  </div>
+  <canvas id="waveCanvas" width="800" height="300"></canvas>
 
-  <canvas id="simCanvas" width="600" height="300"></canvas>
+   <script src="reflect.js"></script>
 
-  <script src="reflect.js"></script>
 <a href="index.html">ホームに戻る</a>
 </body>
 </html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>単振動・円運動・正弦波シミュレータ</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      background: #fff;
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h2>単振動・円運動・正弦波の関係</h2>
+  <canvas id="simCanvas" width="1000" height="400"></canvas>
+  <button id="startBtn">Start</button>
+  <button id="stopBtn">Stop</button>
+<br>
+<br>
+<a href="index.html">ホームに戻る</a>
+  <script>
+    const canvas = document.getElementById("simCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    const centerX = 150;
+    const centerY = height / 2;
+    const radius = 60;
+
+    let time = 0;
+    const dt = 0.02;
+
+    let running = false;
+    let animationId = null;
+    const wavePoints = [];
+
+    function drawFrame() {
+      ctx.clearRect(0, 0, width, height);
+
+      const angle = -time * 2 * Math.PI;
+      const circleX = centerX + radius * Math.cos(angle);
+      const circleY = centerY + radius * Math.sin(angle);
+
+      // === 円 ===
+      ctx.strokeStyle = "#aaa";
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      // 点（円運動）
+      ctx.fillStyle = "blue";
+      ctx.beginPath();
+      ctx.arc(circleX, circleY, 8, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // === 単振動 ===
+      const oscX = 350;
+      ctx.strokeStyle = "#aaa";
+      ctx.beginPath();
+      ctx.moveTo(oscX, centerY - radius - 20);
+      ctx.lineTo(oscX, centerY + radius + 20);
+      ctx.stroke();
+
+      ctx.fillStyle = "green";
+      ctx.beginPath();
+      ctx.arc(oscX, circleY, 8, 0, 2 * Math.PI);
+      ctx.fill();
+
+      // リンク線（円 → 単振動）
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = "#999";
+      ctx.beginPath();
+      ctx.moveTo(circleX, circleY);
+      ctx.lineTo(oscX, circleY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // === 正弦波 ===
+      const waveOriginX = 500;
+      wavePoints.unshift(circleY);
+
+      ctx.strokeStyle = "red";
+      ctx.beginPath();
+      for (let i = 0; i < wavePoints.length; i++) {
+        const x = waveOriginX + i;
+        const y = wavePoints[i];
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.stroke();
+
+      // リンク線（円 → 波）
+      ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = "#999";
+      ctx.beginPath();
+      ctx.moveTo(circleX, circleY);
+      ctx.lineTo(waveOriginX, circleY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // ラベル
+      ctx.fillStyle = "#000";
+      ctx.font = "14px sans-serif";
+      ctx.fillText("円運動", centerX - 20, centerY - radius - 30);
+      ctx.fillText("単振動", oscX - 20, centerY - radius - 30);
+      ctx.fillText("正弦波", waveOriginX + 180, centerY - radius - 30);
+
+      if (wavePoints.length > 400) wavePoints.pop();
+    }
+
+    function animate() {
+      drawFrame();
+      time += dt;
+      animationId = requestAnimationFrame(animate);
+    }
+
+    function startSimulation() {
+      if (!running) {
+        running = true;
+        animate();
+      }
+    }
+
+    function stopSimulation() {
+      if (running) {
+        running = false;
+        cancelAnimationFrame(animationId);
+      }
+    }
+
+    document.getElementById("startBtn").addEventListener("click", startSimulation);
+    document.getElementById("stopBtn").addEventListener("click", stopSimulation);
+
+    // 最初に1フレームだけ描画して止めておく
+    drawFrame();
+  </script>
+</body>
+</html>
+
+
+

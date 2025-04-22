@@ -44,18 +44,18 @@
   <div class="slider-group">
     <div class="slider-block">
       <label>波源1 振幅 
-        <input type="range" id="amp1" min="10" max="50" value="30" oninput="updateValue(this)">
+        <input type="range" id="amp1" min="10" max="50" step="10" value="30" oninput="updateValue(this)">
         <span id="amp1_val">30</span>
       </label>
-      <label>周波数 
-        <input type="range" id="freq1" min="0.1" max="1" step="0.1" value="0.5" oninput="updateValue(this)">
-        <span id="freq1_val">0.5</span>
+      <label>波長 
+        <input type="range" id="wavelength1" min="30" max="50" step="5" value="30" oninput="updateValue(this)">
+        <span id="wavelength1_val">30</span>
       </label>
       <label>速度 
-        <input type="range" id="speed1" min="10" max="20" step="0.1" value="15" oninput="updateValue(this)">
-        <span id="speed1_val">15</span>
+        <input type="range" id="speed1" min="30" max="50" step="5" value="35" oninput="updateValue(this)">
+        <span id="speed1_val">35</span>
       </label>
-      <label>位相差 
+      <label>初期位相 
         <input type="range" id="phase1" min="0" max="6.28" step="1.57" value="0" oninput="updateValue(this)">
         <span id="phase1_val">0</span>
       </label>
@@ -69,18 +69,18 @@
 
     <div class="slider-block">
       <label>波源2 振幅 
-        <input type="range" id="amp2" min="10" max="50" value="30" oninput="updateValue(this)">
+        <input type="range" id="amp2" min="10" max="50" step="10" value="30" oninput="updateValue(this)">
         <span id="amp2_val">30</span>
       </label>
-      <label>周波数 
-        <input type="range" id="freq2" min="0.1" max="1" step="0.1" value="0.5" oninput="updateValue(this)">
-        <span id="freq2_val">0.5</span>
+      <label>波長 
+        <input type="range" id="wavelength2" min="30" max="50" step="5" value="40" oninput="updateValue(this)">
+        <span id="wavelength2_val">40</span>
       </label>
       <label>速度 
-        <input type="range" id="speed2" min="10" max="20" step="0.1" value="15" oninput="updateValue(this)">
-        <span id="speed2_val">15</span>
+        <input type="range" id="speed2" min="30" max="50" step="5" value="30" oninput="updateValue(this)">
+        <span id="speed2_val">30</span>
       </label>
-      <label>位相差 
+      <label>初期位相
         <input type="range" id="phase2" min="0" max="6.28" step="1.57" value="0" oninput="updateValue(this)">
         <span id="phase2_val">0</span>
       </label>
@@ -92,9 +92,14 @@
       </label>
     </div>
   </div>
-
   <script src="simulator.js"></script>
   <br>
-<a href="index.html">ホームに戻る</a>
+  <a href="index.html">ホームに戻る</a>
 </body>
 </html>
+
+
+
+
+
+
